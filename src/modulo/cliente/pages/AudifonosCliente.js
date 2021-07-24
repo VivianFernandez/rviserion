@@ -5,14 +5,15 @@ import baudifonos from "../../../img/baudifonos.jpg";
 import { Link } from "react-router-dom";
 import HeaderCliente from "../componentes/HeaderCliente";
 import FooterCliente from "../componentes/FooterCliente";
-import {getProductos} from "../../../services/servicios.js";
+import {getAllProductsImg} from "../../../services/servicios.js";
 
 
 function AudifonosCliente() {
   const [audifonos, setAudifonos] = useState([]);
   const traerAudifonos = () => {
     
-    getProductos().then((rpta) => {
+    getAllProductsImg().then((rpta) => {
+      console.log(rpta);
       setAudifonos(rpta.data);
     });
   }
@@ -41,7 +42,7 @@ function AudifonosCliente() {
         <div class="container">
           <div class="row">
             {audifonos.map((objProducto,i)=>{
-              if (objProducto.categoria==="audifonos"){
+              if (objProducto.categoria==="Audifonos"){
                 return (
                   <div class="col-6 col-md-4 ">
                   <div

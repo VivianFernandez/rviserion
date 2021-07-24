@@ -7,11 +7,11 @@ import bsillas from "../../../img/bsillas.jpg";
 import { Link } from "react-router-dom";
 import HeaderCliente from "../componentes/HeaderCliente";
 import FooterCliente from "../componentes/FooterCliente";
-import {getProductos} from "../../../services/servicios.js";
+import {getAllProductsImg} from "../../../services/servicios.js";
 function SillasCliente() {
   const[sillas,setSillas]= useState([]);
   const traerSillas = () =>{
-    getProductos().then((rpta) => {
+    getAllProductsImg().then((rpta) => {
       setSillas(rpta.data);
     });
   }
@@ -40,7 +40,7 @@ function SillasCliente() {
         <div class="container">
           <div class="row">
           {sillas.map((objProducto,i)=>{
-              if (objProducto.categoria==="sillas"){
+              if (objProducto.categoria==="Sillas Gamer"){
                 return (
                   <div class="col-6 col-md-4 ">
                   <div

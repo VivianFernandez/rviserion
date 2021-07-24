@@ -5,11 +5,11 @@ import bteclado from "../../../img/bteclado.jpg";
 import { Link } from "react-router-dom";
 import HeaderCliente from "../componentes/HeaderCliente";
 import FooterCliente from "../componentes/FooterCliente";
-import {getProductos} from "../../../services/servicios.js";
+import {getAllProductsImg} from "../../../services/servicios.js";
 function TeclaCliente() {
   const[teclado,setTeclado]= useState([]);
   const traerTeclado = () =>{
-    getProductos().then((rpta) => {
+    getAllProductsImg().then((rpta) => {
       setTeclado(rpta.data);
     });
   }
@@ -40,7 +40,7 @@ function TeclaCliente() {
           <div class="row">
             
           {teclado.map((objProducto,i)=>{
-              if (objProducto.categoria==="teclado"){
+              if (objProducto.categoria==="Teclados Gamer"){
                 return (
                   <div class="col-6 col-md-4 ">
                   <div

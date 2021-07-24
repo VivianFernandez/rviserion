@@ -1,31 +1,45 @@
-import React from "react";
+import React,{useState} from "react";
 import "../../../css/estilos-admi.css";
 import { getAdmin } from "../../../services/servicios";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import perfilc from '../../../img/perfilc.jpg';
+import { useEffect } from "react";
 function LoginAdmin() {
   const history = useHistory();
-  const sendForm = (e) => {
+
+  const [formulario, setFormulario] = useState({
+    email: "",
+    password: ""
+  });
+  let { email, password } = formulario;
+
+  const handleChange = (e) => {
+    setFormulario({ ...formulario, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const correo = document.getElementById("email");
-    const contraseña = document.getElementById("password");
-    getAdmin().then((rpta) => {
-      rpta.data.map((rpta2) => {
-        if (
-          rpta2.email === correo.value &&
-          rpta2.password === contraseña.value
-        ) {
-            history.push({
-                pathname:`/admin/home`
-            })
-          Swal.fire("Good job!", "Los datos son correctos", "success");
-        } else {
-          Swal.fire("Ups!", "Los datos son erroneos", "error");
-        }
-      });
+    if (
+      email.trim() === "" ||
+      password.trim() === ""
+    ) {
+      Swal.fire("Ups!", "Complete los campos!", "error");
+      return;
+    }
+    getAdmin(formulario).then((rpta) => {
+      console.log(rpta);
+      if (rpta.status === 200) {
+        history.push({
+          pathname: `/admin/home`
+        })
+        Swal.fire("Good job!", "Los datos son correctos", "success");
+      } else {
+        Swal.fire("Ups!", "Los datos son erroneos", "error");
+      }
     });
   };
+
 
   return (
     <>
@@ -45,7 +59,7 @@ function LoginAdmin() {
               <div className="slider-tab"></div>
             </div>
             <div className="form-inner">
-              <form action="#" className="login" onSubmit={sendForm}>
+              <form action="#" className="login" onSubmit={handleSubmit}>
                 <div className="field">
                   <input
                     id="email"
@@ -53,6 +67,9 @@ function LoginAdmin() {
                     type="text"
                     placeholder="Email"
                     required
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="field">
@@ -62,6 +79,9 @@ function LoginAdmin() {
                     type="password"
                     placeholder="Contraseña"
                     required
+                    name="password"
+                    value={password}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="pass-link">

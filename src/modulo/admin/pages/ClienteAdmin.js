@@ -96,7 +96,7 @@ function ClienteAdmin() {
                         }}
                         type="button"
                         onClick={() => {
-                          eliminarCliente(objCliente.id);
+                          eliminarCliente(objCliente.idcliente);
                         }}
                       >
                        <FontAwesomeIcon icon={faTimes}/> Borrar

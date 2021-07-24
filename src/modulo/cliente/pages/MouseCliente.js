@@ -5,11 +5,11 @@ import bmouse from "../../../img/bmouse.jpg";
 import { Link } from "react-router-dom";
 import HeaderCliente from "../componentes/HeaderCliente";
 import FooterCliente from "../componentes/FooterCliente";
-import {getProductos} from "../../../services/servicios.js";
+import {getAllProductsImg} from "../../../services/servicios.js";
 function MouseCliente() {
   const[mouse,setMouse]= useState([]);
   const traerMouse = () =>{
-    getProductos().then((rpta) => {
+    getAllProductsImg().then((rpta) => {
       setMouse(rpta.data);
     });
   }
@@ -39,7 +39,7 @@ function MouseCliente() {
           <div class="row">
            
           {mouse.map((objProducto,i)=>{
-              if (objProducto.categoria==="mouse"){
+              if (objProducto.categoria==="Mouse"){
                 return (
                   <div class="col-6 col-md-4 ">
                   <div

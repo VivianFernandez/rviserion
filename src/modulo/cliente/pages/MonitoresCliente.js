@@ -5,11 +5,11 @@ import bmonitores from "../../../img/bmonitores.jpg";
 import { Link } from "react-router-dom";
 import HeaderCliente from "../componentes/HeaderCliente";
 import FooterCliente from "../componentes/FooterCliente";
-import {getProductos} from "../../../services/servicios.js";
+import {getAllProductsImg} from "../../../services/servicios.js";
 function MonitoresCliente() {
   const[monitores,setMonitores]= useState([]);
   const traerMonitores = () =>{
-    getProductos().then((rpta) => {
+    getAllProductsImg().then((rpta) => {
       setMonitores(rpta.data);
     });
   }
@@ -38,7 +38,7 @@ function MonitoresCliente() {
         <div class="container">
           <div class="row">
           {monitores.map((objProducto,i)=>{
-              if (objProducto.categoria==="monitores"){
+              if (objProducto.categoria==="Monitores"){
                 return (
                   <div class="col-6 col-md-4 ">
                   <div

@@ -5,11 +5,11 @@ import bmousep from "../../../img/bmousep.jpg";
 import { Link } from "react-router-dom";
 import HeaderCliente from "../componentes/HeaderCliente";
 import FooterCliente from "../componentes/FooterCliente";
-import {getProductos} from "../../../services/servicios.js";
+import {getAllProductsImg} from "../../../services/servicios.js";
 function MousePadCliente() {
     const[mousepad,setMousepad]= useState([]);
     const traerMousepad = () =>{
-      getProductos().then((rpta) => {
+      getAllProductsImg().then((rpta) => {
         setMousepad(rpta.data);
       });
     }
@@ -38,7 +38,7 @@ function MousePadCliente() {
         <div class="container">
           <div class="row">
           {mousepad.map((objProducto,i)=>{
-              if (objProducto.categoria==="mousepad"){
+              if (objProducto.categoria==="Mouse Pad"){
                 return (
                   <div class="col-6 col-md-4 ">
                   <div

@@ -17,6 +17,7 @@ function ProductoAdmin() {
   const [productos, setProductos] = useState([]);
   const traerProductos = () => {
     getProduct().then((rpta) => {
+      console.log(rpta.data);
       setProductos(rpta.data);
     });
   };
@@ -26,13 +27,13 @@ function ProductoAdmin() {
   const [formulario, setFormulario] = useState({
     nombre: "",
     marca: "",
-    categoria: "",
+    idcategoria: 0,
     stock: 0,
     precio: 0,
     img: "",
   });
   const history = useHistory();
-  let { nombre, marca, categoria, stock, precio, img } = formulario;
+  let { nombre, marca, idcategoria, stock, precio, img } = formulario;
   const handleChange = (e) => {
     setFormulario({ ...formulario, [e.target.name]: e.target.value });
   };
@@ -41,7 +42,7 @@ function ProductoAdmin() {
     if (
       nombre.trim() === "" ||
       marca.trim() === "" ||
-      categoria.trim() === "" ||
+      idcategoria === 0 ||
       stock === 0 ||
       precio === 0 ||
       img.trim() === ""
@@ -167,11 +168,11 @@ function ProductoAdmin() {
                         Categoria:
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control"
                         id="recipient-name"
-                        name="categoria"
-                        value={categoria}
+                        name="idcategoria"
+                        value={idcategoria}
                         onChange={handleChange}
                       />
                     </div>
@@ -247,12 +248,12 @@ function ProductoAdmin() {
             {productos.map((objProducto, i) => {
               return (
                 <tr>
-                  <td>{objProducto.id}</td>
+                  <td>{objProducto.idproducto}</td>
                   <td>{objProducto.nombre}</td>
                   <td>{objProducto.marca}</td>
                   <td>{objProducto.categoria}</td>
                   <td>{objProducto.stock}</td>
-                  <td>{objProducto.precio}</td>
+                  <td>S/. {objProducto.precio}</td>
                   <td>
                     {" "}
                     <button
@@ -280,7 +281,7 @@ function ProductoAdmin() {
                       }}
                       type="button"
                       onClick={() => {
-                        eliminarProducto(objProducto.id);
+                        eliminarProducto(objProducto.idproducto);
                       }}
                     >
                       <FontAwesomeIcon icon={faTimes}/> Borrar

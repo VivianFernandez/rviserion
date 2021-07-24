@@ -19,6 +19,7 @@ import CarritoCliente from "./modulo/cliente/pages/CarritoCliente";
 import ProcesarCompraCliente from "./modulo/cliente/pages/ProcesarCompraCliente";
 import EditarProductoAdmin from "./modulo/admin/pages/EditarProductoAdmin";
 import EditarClienteAdmin from "./modulo/admin/pages/EditarClienteAdmin";
+import RegisterClient from "./modulo/cliente/pages/RegisterClient"
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path="/cliente/login">
           <LoginCliente />
+        </Route>
+        <Route path="/cliente/register">
+          <RegisterClient/>
         </Route>
         <Route path="/cliente/categoria">
           <CategoriasCliente/>

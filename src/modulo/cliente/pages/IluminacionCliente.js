@@ -5,12 +5,13 @@ import biluminacion from "../../../img/biluminacion.jpg";
 import { Link } from "react-router-dom";
 import HeaderCliente from "../componentes/HeaderCliente";
 import FooterCliente from "../componentes/FooterCliente";
-import {getProductos} from "../../../services/servicios.js";
+import {getAllProductsImg} from "../../../services/servicios.js";
 
 function IluminacionCliente() {
   const[iluminacion,setIluminacion]= useState([]);
   const traerIluminacion = () =>{
-    getProductos().then((rpta) => {
+    getAllProductsImg().then((rpta) => {
+      console.log(rpta);
       setIluminacion(rpta.data);
     });
   }
@@ -39,7 +40,7 @@ function IluminacionCliente() {
         <div class="container">
           <div class="row">
           {iluminacion.map((objProducto,i)=>{
-              if (objProducto.categoria==="iluminacion"){
+              if (objProducto.categoria==="Iluminación ambiente"){
                 return (
                   <div class="col-6 col-md-4 ">
                   <div
